@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulse Connect - Telangana Blood Donor Directory</title>
+    <link rel="stylesheet" href="css/style.css?v=20251102">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-heartbeat"></i>
+                <span>Pulse Connect</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#donors" class="nav-link">Find Donors</a>
+                <a href="#emergency" class="nav-link">Emergency</a>
+                <a href="#about" class="nav-link">About</a>
+                <a id="profile-link" href="/profile.html" class="nav-link" style="display:none"><i class="fas fa-user"></i> Profile</a>
+                <button id="login-button" class="btn-primary" onclick="showLoginModal()">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (original content and background colors) -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title animate-fade-in">
+                    Save Lives, <span class="text-gradient">Donate Blood</span>
+                </h1>
+                <p class="hero-subtitle animate-fade-in-delay">
+                    Connect with blood donors across Telangana instantly. Real-time matching powered by AI.
+                </p>
+                <div class="hero-stats animate-fade-in-delay-2">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <h3 id="donor-count">0</h3>
+                            <p>Active Donors</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-heart"></i>
+                        <div>
+                            <h3 id="donation-count">0</h3>
+                            <p>Lives Saved</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3 id="response-time">0</h3>
+                            <p>Avg Response (min)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn-primary btn-lg" onclick="showRegisterModal()">
+                        <i class="fas fa-user-plus"></i> Become a Donor
+                    </button>
+                    <button class="btn-secondary btn-lg" onclick="scrollToSection('emergency')">
+                        <i class="fas fa-exclamation-triangle"></i> Emergency Request
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image animate-slide-in">
+                <!-- Subtle animated background (currently disabled) -->
+                <div id="rbc-root" aria-hidden="true"></div>
+                <!-- Foreground 3D blood drop (optional) -->
+                <img class="hero-3d-drop" src="images/hero-3d-drop.svg?v=20251102" alt="3D blood drop" loading="eager" />
+                <!-- Decorative RBC chips around drop -->
+                <div class="rbc-chips" aria-hidden="true">
+                    <!-- behind layer -->
+                    <span class="rbc-chip behind" style="--x: 12%; --y: 18%; --s: .75; --d: .0s;"></span>
+                    <span class="rbc-chip behind" style="--x: 78%; --y: 16%; --s: .85; --d: .2s;"></span>
+                    <span class="rbc-chip behind" style="--x: 8%;  --y: 56%; --s: .9;  --d: .6s;"></span>
+                    <span class="rbc-chip behind" style="--x: 92%; --y: 44%; --s: .7;  --d: .8s;"></span>
+                    <!-- front layer -->
+                    <span class="rbc-chip front"  style="--x: 18%; --y: 72%; --s: 1.05; --d: .3s;"></span>
+                    <span class="rbc-chip front"  style="--x: 60%; --y: 72%; --s: .95; --d: .5s;"></span>
+                    <span class="rbc-chip front"  style="--x: 40%; --y: 22%; --s: .8;  --d: .9s;"></span>
+                    <span class="rbc-chip front"  style="--x: 84%; --y: 62%; --s: .8;  --d: 1.1s;"></span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Pulse Connect?</h2>
+                <p class="section-subtitle">Advanced technology meets humanitarian service</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search-location"></i>
+                    </div>
+                    <h3>Smart Matching</h3>
+                    <p>AI-powered algorithm finds the nearest compatible donors in seconds</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Real-time Alerts</h3>
+                    <p>Instant notifications via SMS and email for emergency requests</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>Your data is encrypted and protected with industry standards</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Demand Prediction</h3>
+                    <p>ML models predict blood demand to optimize inventory</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Donation Tracking</h3>
+                    <p>Keep track of your donations and impact over time</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Impact Score</h3>
+                    <p>Earn recognition for every life you help save</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donor Search Section -->
+    <section id="donors" class="donor-search">
+        <!-- Decorative DNA background -->
+        <div class="dna-background" aria-hidden="true">
+            <!-- Canvas-based realistic double helix (degrades gracefully if JS disabled) -->
+            <canvas id="dna-canvas" class="dna-canvas" width="1200" height="220"></canvas>
+        </div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Find Blood Donors</h2>
+                <p class="section-subtitle">Search for available donors in your area</p>
+            </div>
+            <div class="search-card">
+                <div class="search-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-tint"></i> Blood Group</label>
+                            <select id="blood-group" class="form-control">
+                                <option value="">Select Blood Group</option>
+                                <option value="A_POSITIVE">A+</option>
+                                <option value="A_NEGATIVE">A-</option>
+                                <option value="B_POSITIVE">B+</option>
+                                <option value="B_NEGATIVE">B-</option>
+                                <option value="AB_POSITIVE">AB+</option>
+                                <option value="AB_NEGATIVE">AB-</option>
+                                <option value="O_POSITIVE">O+</option>
+                                <option value="O_NEGATIVE">O-</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-map-marker-alt"></i> District/City</label>
+                            <select id="location" class="form-control">
+                                <option value="">Select District/City</option>
+                                <optgroup label="Hyderabad Region">
+                                    <option value="Hyderabad">Hyderabad</option>
+                                    <option value="Secunderabad">Secunderabad</option>
+                                    <option value="Kukatpally">Kukatpally</option>
+                                    <option value="Madhapur">Madhapur</option>
+                                    <option value="Gachibowli">Gachibowli</option>
+                                    <option value="LB Nagar">LB Nagar</option>
+                                    <option value="Shamshabad">Shamshabad</option>
+                                </optgroup>
+                                <optgroup label="Major Districts">
+                                    <option value="Warangal">Warangal</option>
+                                    <option value="Hanamkonda">Hanamkonda</option>
+                                    <option value="Kazipet">Kazipet</option>
+                                    <option value="Nizamabad">Nizamabad</option>
+                                    <option value="Armoor">Armoor</option>
+                                    <option value="Karimnagar">Karimnagar</option>
+                                    <option value="Jagtial">Jagtial</option>
+                                    <option value="Khammam">Khammam</option>
+                                    <option value="Kothagudem">Kothagudem</option>
+                                    <option value="Nalgonda">Nalgonda</option>
+                                    <option value="Miryalaguda">Miryalaguda</option>
+                                </optgroup>
+                                <optgroup label="Other Districts">
+                                    <option value="Medak">Medak</option>
+                                    <option value="Sangareddy">Sangareddy</option>
+                                    <option value="Mahbubnagar">Mahbubnagar</option>
+                                    <option value="Gadwal">Gadwal</option>
+                                    <option value="Adilabad">Adilabad</option>
+                                    <option value="Mancherial">Mancherial</option>
+                                    <option value="Patancheru">Patancheru</option>
+                                    <option value="Zaheerabad">Zaheerabad</option>
+                                    <option value="Kamareddy">Kamareddy</option>
+                                    <option value="Banswada">Banswada</option>
+                                    <option value="Siddipet">Siddipet</option>
+                                    <option value="Dubbak">Dubbak</option>
+                                    <option value="Vikarabad">Vikarabad</option>
+                                    <option value="Tandur">Tandur</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-crosshairs"></i> Radius (km)</label>
+                            <input type="number" id="radius" class="form-control" value="10" min="1" max="100">
+                        </div>
+                    </div>
+                    <button class="btn-primary btn-block" onclick="searchDonors()">
+                        <i class="fas fa-search"></i> Search Donors
+                    </button>
+                </div>
+                <div id="donor-results" class="donor-results">
+                    <div class="empty-state">
+                        <i class="fas fa-users"></i>
+                        <p>Search for donors to see results</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Request Section -->
+    <section id="emergency" class="emergency">
+        <div class="container">
+            <div class="emergency-card">
+                <div class="emergency-header">
+                    <i class="fas fa-ambulance"></i>
+                    <h2>Emergency Blood Request</h2>
+                    <p>Get instant help in critical situations</p>
+                </div>
+                <div class="emergency-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Patient Name *</label>
+                            <input type="text" id="patient-name" class="form-control" placeholder="Full name">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Number *</label>
+                            <input type="tel" id="contact-number" class="form-control" placeholder="+91 XXXXX XXXXX">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Blood Group Required *</label>
+                            <select id="emergency-blood-group" class="form-control">
+                                <option value="">Select</option>
+                                <option value="A_POSITIVE">A+</option>
+                                <option value="A_NEGATIVE">A-</option>
+                                <option value="B_POSITIVE">B+</option>
+                                <option value="B_NEGATIVE">B-</option>
+                                <option value="AB_POSITIVE">AB+</option>
+                                <option value="AB_NEGATIVE">AB-</option>
+                                <option value="O_POSITIVE">O+</option>
+                                <option value="O_NEGATIVE">O-</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Units Required *</label>
+                            <input type="number" id="units-required" class="form-control" min="1" max="10" value="1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Hospital Name & Location *</label>
+                        <input type="text" id="hospital-location" class="form-control" placeholder="Hospital name and address">
+                    </div>
+                    <div class="form-group">
+                        <label>Additional Details</label>
+                        <textarea id="emergency-details" class="form-control" rows="3" placeholder="Any additional information..."></textarea>
+                    </div>
+                    <button class="btn-danger btn-block btn-lg" onclick="submitEmergencyRequest()">
+                        <i class="fas fa-paper-plane"></i> Send Emergency Request
+                    </button>
+                    <div style="margin-top:10px; text-align:center; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+                        <button class="btn-secondary" onclick="sendFast2Sms()" title="Sends a single SMS using Fast2SMS free API">
+                            <span>🚨 Emergency SMS (Fast2SMS)</span>
+                        </button>
+                        <button class="btn-secondary" onclick="sendFast2SmsBulkFromResults()" title="Sends a bulk SMS to donors in current results (uses trial credits)">
+                            <span>📢 Notify Found Donors (Bulk)</span>
+                        </button>
+                    </div>
+
+                    <!-- Quick SMS composer (number + message) for Fast2SMS single send -->
+                    <div class="sms-composer" style="margin-top:14px; display:grid; grid-template-columns: 1fr; gap:8px;">
+                        <div>
+                            <label style="font-weight:600; font-size:14px;">SMS Number (10-digit)</label>
+                            <input id="sms-number" type="tel" class="form-control" placeholder="Enter 10-digit mobile" maxlength="14">
+                        </div>
+                        <div>
+                            <label style="font-weight:600; font-size:14px;">SMS Message</label>
+                            <textarea id="sms-message" class="form-control" rows="2" placeholder="Type the message to send..."></textarea>
+                        </div>
+                        <div style="font-size:12px;color:#888;">Tip: Leave blank to auto-fill from the Emergency form above. You can edit then press “Emergency SMS (Fast2SMS)”.</div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About Pulse Connect</h2>
+                    <p>Pulse Connect is an intelligent blood donor directory system that bridges the gap between blood donors and recipients. Using advanced AI and machine learning algorithms, we ensure rapid response times during emergencies.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>24/7 Emergency Support</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Verified Donor Database</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>AI-Powered Matching</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Privacy Protected</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="pulse-animation">
+                        <div class="pulse-circle"></div>
+                        <div class="pulse-circle"></div>
+                        <div class="pulse-circle"></div>
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-heartbeat"></i> Pulse Connect</h3>
+                    <p>Saving lives through smart technology and community connection.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#donors">Find Donors</a></li>
+                        <li><a href="#emergency">Emergency</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="/swagger-ui.html" target="_blank">API Documentation</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@pulseconnect.com</li>
+                        <li><i class="fas fa-phone"></i> +91 1800-XXX-XXXX</li>
+                        <li><i class="fas fa-map-marker-alt"></i> India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pulse Connect. All rights reserved. Made with <i class="fas fa-heart"></i> for humanity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('login-modal')">&times;</span>
+            <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+            <form id="login-form" class="modal-form">
+                <div class="form-group">
+                    <label>Email or Phone</label>
+                    <input id="login-username" type="text" class="form-control" placeholder="Enter your email or phone">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input id="login-password" type="password" class="form-control" placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn-primary btn-block">Login</button>
+                <p class="text-center">Don't have an account? <a href="#" onclick="showRegisterModal()">Register</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content modal-large">
+            <span class="modal-close" onclick="closeModal('register-modal')">&times;</span>
+            <h2><i class="fas fa-user-plus"></i> Register as Donor</h2>
+            <form id="register-form" class="modal-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input id="reg-fullname" type="text" class="form-control" placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input id="reg-email" type="email" class="form-control" placeholder="your@email.com">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input id="reg-phone" type="tel" class="form-control" placeholder="+91 XXXXX XXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>Blood Group *</label>
+                        <select id="reg-blood-group" class="form-control">
+                            <option value="">Select</option>
+                            <option value="A_POSITIVE">A+</option>
+                            <option value="A_NEGATIVE">A-</option>
+                            <option value="B_POSITIVE">B+</option>
+                            <option value="B_NEGATIVE">B-</option>
+                            <option value="AB_POSITIVE">AB+</option>
+                            <option value="AB_NEGATIVE">AB-</option>
+                            <option value="O_POSITIVE">O+</option>
+                            <option value="O_NEGATIVE">O-</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Date of Birth *</label>
+                        <input id="reg-dob" type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Gender *</label>
+                        <select id="reg-gender" class="form-control">
+                            <option value="">Select</option>
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>District/City *</label>
+                        <select id="reg-city" class="form-control">
+                            <option value="">Select District/City</option>
+                            <optgroup label="Hyderabad Region">
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Secunderabad">Secunderabad</option>
+                                <option value="Kukatpally">Kukatpally</option>
+                                <option value="Madhapur">Madhapur</option>
+                                <option value="Gachibowli">Gachibowli</option>
+                                <option value="LB Nagar">LB Nagar</option>
+                                <option value="Shamshabad">Shamshabad</option>
+                            </optgroup>
+                            <optgroup label="Major Districts">
+                                <option value="Warangal">Warangal</option>
+                                <option value="Hanamkonda">Hanamkonda</option>
+                                <option value="Kazipet">Kazipet</option>
+                                <option value="Nizamabad">Nizamabad</option>
+                                <option value="Armoor">Armoor</option>
+                                <option value="Karimnagar">Karimnagar</option>
+                                <option value="Jagtial">Jagtial</option>
+                                <option value="Khammam">Khammam</option>
+                                <option value="Kothagudem">Kothagudem</option>
+                                <option value="Nalgonda">Nalgonda</option>
+                                <option value="Miryalaguda">Miryalaguda</option>
+                            </optgroup>
+                            <optgroup label="Other Districts">
+                                <option value="Medak">Medak</option>
+                                <option value="Sangareddy">Sangareddy</option>
+                                <option value="Mahbubnagar">Mahbubnagar</option>
+                                <option value="Gadwal">Gadwal</option>
+                                <option value="Adilabad">Adilabad</option>
+                                <option value="Mancherial">Mancherial</option>
+                                <option value="Patancheru">Patancheru</option>
+                                <option value="Zaheerabad">Zaheerabad</option>
+                                <option value="Kamareddy">Kamareddy</option>
+                                <option value="Banswada">Banswada</option>
+                                <option value="Siddipet">Siddipet</option>
+                                <option value="Dubbak">Dubbak</option>
+                                <option value="Vikarabad">Vikarabad</option>
+                                <option value="Tandur">Tandur</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Pincode *</label>
+                        <input id="reg-pincode" type="text" class="form-control" placeholder="6-digit pincode">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Address *</label>
+                    <textarea id="reg-address" class="form-control" rows="2" placeholder="Your complete address"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Password *</label>
+                    <input id="reg-password" type="password" class="form-control" placeholder="Create a strong password">
+                </div>
+                <button type="submit" class="btn-primary btn-block">Register Now</button>
+                <p class="text-center">Already have an account? <a href="#" onclick="showLoginModal()">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/dna.js"></script>
+    <!-- React (UMD) – lightweight integration without build tools -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="js/rbc-react.js?v=20251102"></script>
+    <!-- Keep drops.js as a safe fallback (no canvas present so it does nothing) -->
+    <script src="js/drops.js?v=20251102"></script>
+</body>
+</html>

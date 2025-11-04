@@ -1,0 +1,28 @@
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Spring Boot logs
+logs/
+*.log
+
+# Local data (H2 db files)
+data/
+
+# OS / Editors
+.DS_Store
+.idea/
+*.iml
+.vscode/
+
+# Node artifacts (if any future frontend tooling)
+node_modules/
+
+# Env files (may contain secrets)
+.env
+
+# Maven wrapper cache
+.mvn/wrapper/maven-wrapper.jar

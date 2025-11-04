@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Pulse Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+            margin-top: 70px;
+        }
+        
+        .sidebar {
+            background: var(--secondary-color);
+            color: white;
+            padding: 2rem 1rem;
+            position: fixed;
+            width: 250px;
+            height: calc(100vh - 70px);
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-menu a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+            background: var(--bg-light);
+        }
+        
+        .dashboard-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .recent-activity {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .activity-item {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-heartbeat"></i>
+                <span>Pulse Connect</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                <button class="btn-secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="user-profile">
+                <div style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem;">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Welcome, Donor!</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Blood Type: O+</p>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-user"></i> My Profile</a></li>
+                <li><a href="#"><i class="fas fa-heart"></i> Donation History</a></li>
+                <li><a href="#"><i class="fas fa-bell"></i> Notifications</a></li>
+                <li><a href="#"><i class="fas fa-calendar"></i> Appointments</a></li>
+                <li><a href="#"><i class="fas fa-trophy"></i> Achievements</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-header">
+                <h1>Dashboard Overview</h1>
+                <p>Welcome back! Here's your blood donation journey.</p>
+            </div>
+
+            <!-- Statistics -->
+            <div class="dashboard-stats">
+                <div class="stat-box">
+                    <div>
+                        <h2 style="margin: 0; color: var(--primary-color);">12</h2>
+                        <p style="margin: 0; color: var(--text-light);">Total Donations</p>
+                    </div>
+                    <div class="stat-icon" style="background: rgba(220, 20, 60, 0.1); color: var(--primary-color);">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                </div>
+
+                <div class="stat-box">
+                    <div>
+                        <h2 style="margin: 0; color: var(--success-color);">36</h2>
+                        <p style="margin: 0; color: var(--text-light);">Lives Saved</p>
+                    </div>
+                    <div class="stat-icon" style="background: rgba(72, 187, 120, 0.1); color: var(--success-color);">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+
+                <div class="stat-box">
+                    <div>
+                        <h2 style="margin: 0; color: var(--accent-color);">450</h2>
+                        <p style="margin: 0; color: var(--text-light);">Impact Points</p>
+                    </div>
+                    <div class="stat-icon" style="background: rgba(66, 153, 225, 0.1); color: var(--accent-color);">
+                        <i class="fas fa-award"></i>
+                    </div>
+                </div>
+
+                <div class="stat-box">
+                    <div>
+                        <h2 style="margin: 0; color: var(--warning-color);">14 days</h2>
+                        <p style="margin: 0; color: var(--text-light);">Next Eligible</p>
+                    </div>
+                    <div class="stat-icon" style="background: rgba(237, 137, 54, 0.1); color: var(--warning-color);">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+                <h2 style="margin-bottom: 1.5rem;">Recent Activity</h2>
+                <div class="activity-item">
+                    <i class="fas fa-check-circle" style="color: var(--success-color); font-size: 1.5rem;"></i>
+                    <div style="flex: 1;">
+                        <h4 style="margin: 0;">Blood Donation Completed</h4>
+                        <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">City Hospital, Mumbai - 2 days ago</p>
+                    </div>
+                    <span style="color: var(--text-light);">+50 points</span>
+                </div>
+
+                <div class="activity-item">
+                    <i class="fas fa-bell" style="color: var(--accent-color); font-size: 1.5rem;"></i>
+                    <div style="flex: 1;">
+                        <h4 style="margin: 0;">Emergency Request Matched</h4>
+                        <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">You were matched for an emergency - 5 days ago</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <i class="fas fa-trophy" style="color: var(--warning-color); font-size: 1.5rem;"></i>
+                    <div style="flex: 1;">
+                        <h4 style="margin: 0;">Achievement Unlocked!</h4>
+                        <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">"Life Saver" badge earned - 1 week ago</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <i class="fas fa-user-check" style="color: var(--success-color); font-size: 1.5rem;"></i>
+                    <div style="flex: 1;">
+                        <h4 style="margin: 0;">Profile Verified</h4>
+                        <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">Your donor profile was verified - 2 weeks ago</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

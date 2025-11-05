@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: pulseconnect-backend
+    env: docker
+    plan: free
+    autoDeploy: true
+    region: oregon
+    healthCheckPath: /
+    envVars:
+      - key: JAVA_OPTS
+        value: -Xms256m -Xmx512m
+    

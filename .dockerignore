@@ -1,0 +1,17 @@
+target
+.git
+.github
+.mvn
+.maven
+.vscode
+**/.idea
+**/.DS_Store
+logs
+data
+*.iml
+*.log
+*.bat
+*.ps1
+*.sh
+*.cmd
+temp-request.json
